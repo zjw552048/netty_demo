@@ -1,5 +1,6 @@
 package netty.echo;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -23,6 +24,18 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 //        }
 //        ctx.write(msg); // (1)
 //        ctx.flush(); // (2)
+//        ctx.writeAndFlush(msg);
+        ByteBuf buf = (ByteBuf)msg;
+    
+        byte [] req = new byte[buf.readableBytes()];
+    
+        buf.readBytes(req);
+    
+        String message = new String(req,"UTF-8");
+    
+        System.out.println("Netty-Server:Receive Message,"+ message);
+    
+        buf.writeBytes(req);
         ctx.writeAndFlush(msg);
     }
     

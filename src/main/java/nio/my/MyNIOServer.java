@@ -8,7 +8,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * created by zjw
@@ -80,5 +80,8 @@ public class MyNIOServer {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        String[] strings = new String[]{"a", "b", "c"};
+        List<String> list = new ArrayList<>(strings.length);
+        Collections.addAll(list, strings);
     }
 }
