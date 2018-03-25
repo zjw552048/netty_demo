@@ -1,6 +1,7 @@
 package netty.echo;
 
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 
@@ -9,34 +10,30 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  * 2018/3/18
  */
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
+    private int count;
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        System.out.println("channelRead");
-//        ByteBuf in = (ByteBuf) msg;
-//        try {
-//            while (in.isReadable()) { // (1)
-//                System.out.print((char) in.readByte());
-//                System.out.flush();
-//                System.out.println();
-//            }
-//        } finally {
-//            ReferenceCountUtil.release(msg); // (2)
-//        }
-//        ctx.write(msg); // (1)
-//        ctx.flush(); // (2)
-//        ctx.writeAndFlush(msg);
-        ByteBuf buf = (ByteBuf)msg;
-    
-        byte [] req = new byte[buf.readableBytes()];
-    
-        buf.readBytes(req);
-    
-        String message = new String(req,"UTF-8");
-    
-        System.out.println("Netty-Server:Receive Message,"+ message);
-    
-        buf.writeBytes(req);
-        ctx.writeAndFlush(msg);
+//        System.out.println("channelRead");
+//        ByteBuf buf = (ByteBuf)msg;
+//
+//        byte [] req = new byte[buf.readableBytes()];
+//
+//        buf.readBytes(req);
+//
+//        String message = new String(req,"UTF-8");
+//
+//        System.out.println("Netty-Server:Receive Message--------");
+//        System.out.println(message);
+        System.out.println((String)msg);
+        System.out.println(++count);
+        
+        
+        
+        
+//        byte[] returnMessage = "ok,received.\n".getBytes();
+//        buf.clear();
+//        buf.writeBytes(returnMessage);
+//        ctx.writeAndFlush(buf);
     }
     
     @Override
